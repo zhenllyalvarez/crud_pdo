@@ -11,7 +11,7 @@
 <body>
 <div class="min-h-screen flex items-center justify-center flex-col">
     <h1 class="font-semibold text-7xl text-center uppercase mb-8">all social</h1>
-    <button class="bg-indigo-400 text-white py-3 px-5 mb-8 rounded">add social</button>
+    <button class="bg-indigo-400 hover:bg-indigo-500 text-white py-3 px-5 mb-8 rounded"><a href="addSocial.php">add social</a></button>
         <div class="w-3/4 sm:w-1/2 relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -32,9 +32,9 @@
                 </thead>
                 <tbody>
                     <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <td class="px-6 py-4">
                             Facebook
-                        </th>
+                        </td>
                         <td class="px-6 py-4">
                             test@gmail.com
                         </td>
@@ -42,8 +42,8 @@
                             test123
                         </td>
                         <td class="px-6 py-4">
-                            <button class="bg-blue-400 hover:bg-blue-500 text-white py-2 px-3 rounded">Update</button>
-                            <button class="bg-red-400 hover:bg-red-500 text-white py-2 px-4 rounded">Delete</button>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 rounded">Update</button>
+                            <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">Delete</button>
                         </td>
                     </tr>
                 </tbody>
