@@ -11,7 +11,7 @@
 <body>
 <div class="min-h-screen flex items-center justify-center flex-col">
     <h1 class="font-semibold text-7xl text-center uppercase mb-8">all social</h1>
-    <button class="bg-indigo-400 hover:bg-indigo-500 text-white py-3 px-5 mb-8 rounded"><a href="addSocial.php">add social</a></button>
+    <a href="addSocial.php"><button class="bg-indigo-400 hover:bg-indigo-500 text-white py-3 px-5 mb-8 rounded">add social</button></a>
         <div class="w-3/4 sm:w-1/2 relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
