@@ -65,9 +65,9 @@ class backend
         try {
             $stmt = $this->dbCnx->prepare("INSERT INTO social (socialmedia, email, password) VALUES (?, ?, ?)");
             $stmt->execute([$this->socialmedia, $this->email, $this->password]);
-            return $stmt->fetchAll();
+            return $stmt;
         } catch (PDOException $e) {
-            echo 'Failed to insert data: ' . $e->getMessage();
+            return 'Failed to insert data: ' . $e->getMessage();
         }
     }
 
@@ -80,12 +80,12 @@ class backend
             echo "Failed to fetch all the data" . $e->getMessage();
         }
     }
-
+    
     public function updateSocial() {
         try {
             $stmt = $this->dbCnx->prepare("UPDATE social SET socialmedia = ?, email = ?, password = ? WHERE id = ?");
             $stmt->execute([$this->socialmedia, $this->email, $this->password, $this->id]);
-            return $stmt-> fetchAll();
+            return $stmt->fetchAll();
         } catch (PDOException $e) {
             echo 'Failed to update data: ' . $e->getMessage();
         }        

@@ -7,9 +7,8 @@
 
     try {
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PWD);
-        echo 'Connected successfully!';
+        // echo 'Connected successfully!';
     } catch (PDOException $e) {
-        echo 'Connection failed: ' . $e->getMessage();
+        return 'Connection failed: ' . $e->getMessage();
     }
-    
 ?>
