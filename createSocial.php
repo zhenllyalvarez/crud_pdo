@@ -1,14 +1,15 @@
 <?php
 require_once("backend.php");
+    $id = $_POST['id'] ?? null;
+    $socialmedia = $_POST['socialmedia'] ?? null;
+    $email = $_POST['email'] ?? null;
+    $password = $_POST['password'] ?? null;
+    
     try {
-        $id = null;
-        $socialmedia = null;
-        $email = null;
-        $password = null;
-
         $sc = new backend($id, $socialmedia, $email, $password);
+        $sc->insertData();
     } catch (PDOException $e) {
-        echo 'Error initializing $sc: ' . $e->getMessage();
+        return 'Error initializing $sc: ' . $e->getMessage();
     }
 
     if (isset($_POST['save'])) {
@@ -16,9 +17,8 @@ require_once("backend.php");
             $sc->setSocialMedia($_POST['socialmedia']);
             $sc->setEmail($_POST['email']);
             $sc->setPassword($_POST['password']);
-            echo $sc;
         } catch (PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
+            return 'Error: ' . $e->getMessage();
         }
     }
 ?>

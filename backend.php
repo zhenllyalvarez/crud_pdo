@@ -24,10 +24,11 @@ class backend
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]);
         } catch (PDOException $e) {
-            echo 'Connection failed: ' . $e->getMessage();
+            return 'Connection failed: ' . $e->getMessage();
             // Handle the error appropriately (logging, graceful exit, etc.)
         }
     }
+    
 
     public function setID($id) {
         $this->id = $id;
@@ -65,7 +66,12 @@ class backend
         try {
             $stmt = $this->dbCnx->prepare("INSERT INTO social (socialmedia, email, password) VALUES (?, ?, ?)");
             $stmt->execute([$this->socialmedia, $this->email, $this->password]);
-            return $stmt;
+            if($stmt) {
+                echo "Data inserted";
+                return $stmt;
+            } else {
+                echo "data not save";
+            }
         } catch (PDOException $e) {
             return 'Failed to insert data: ' . $e->getMessage();
         }
@@ -87,7 +93,7 @@ class backend
             $stmt->execute([$this->socialmedia, $this->email, $this->password, $this->id]);
             return $stmt->fetchAll();
         } catch (PDOException $e) {
-            echo 'Failed to update data: ' . $e->getMessage();
+            return 'Failed to update data: ' . $e->getMessage();
         }        
     }
 
@@ -97,7 +103,7 @@ class backend
             $stmt->execute($this->id);
             return $stmt->fetchAll();
         } catch (PDOException $e) {
-            echo "Failed to delete social". $e->getMessage();
+            return "Failed to delete social". $e->getMessage();
         }
     }
 }
