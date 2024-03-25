@@ -66,9 +66,9 @@ class backend
         try {
             $stmt = $this->dbCnx->prepare("INSERT INTO social (socialmedia, email, password) VALUES (?, ?, ?)");
             $stmt->execute([$this->socialmedia, $this->email, $this->password]);
-            if($stmt) {
-                echo "Data inserted";
-                return $stmt;
+            if($stmt->rowCount() > 0) {
+                header("Location: alldata.php");
+                exit();
             } else {
                 echo "data not save";
             }
@@ -86,22 +86,47 @@ class backend
             echo "Failed to fetch all the data" . $e->getMessage();
         }
     }
+
+    public function fetchOne($id) {
+        try {
+            $stmt = $this->dbCnx->prepare("SELECT * FROM social WHERE id = ?");
+            $stmt->execute([$id]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+            if($stmt) {
+                echo $id;
+            } else {
+                echo "ID not found";
+            }
+        } catch (PDOException $e) {
+            echo "Error" . $e->getMessage();
+        }
+    }
     
     public function updateSocial() {
         try {
             $stmt = $this->dbCnx->prepare("UPDATE social SET socialmedia = ?, email = ?, password = ? WHERE id = ?");
             $stmt->execute([$this->socialmedia, $this->email, $this->password, $this->id]);
             return $stmt->fetchAll();
+            if($stmt) {
+                echo "Not Found tangina";
+            } else {
+                echo "ID not found";
+            }
         } catch (PDOException $e) {
             return 'Failed to update data: ' . $e->getMessage();
         }        
     }
 
-    public function deleteSocial() {
+    public function deleteSocial($id) {
         try {
             $stmt = $this->dbCnx->prepare("DELETE FROM social WHERE id = ?");
-            $stmt->execute($this->id);
-            return $stmt->fetchAll();
+            $stmt->execute([$id]);
+            if($stmt->rowCount() > 0) {
+                header("Location: alldata.php");
+                exit();
+            } else {
+                echo "Failed to delete social";
+            }
         } catch (PDOException $e) {
             return "Failed to delete social". $e->getMessage();
         }

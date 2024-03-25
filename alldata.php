@@ -1,3 +1,6 @@
+<?php
+   require_once("fetchAllData.php");
+?> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,21 +34,27 @@
                     </tr>
                 </thead>
                 <tbody>
+                <?php foreach ($allData as $row): ?>
                     <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                         <td class="px-6 py-4">
-                            Facebook
+                        <?php echo $row['socialmedia']; ?>
                         </td>
                         <td class="px-6 py-4">
-                            test@gmail.com
+                        <?php echo $row['email']; ?>
                         </td>
                         <td class="px-6 py-4">
-                            test123
+                        <?php echo $row['password']; ?>
                         </td>
-                        <td class="px-6 py-4">
-                            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 rounded">Update</button>
-                            <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">Delete</button>
+                        <td class="px-6 py-4 flex gap-3">
+                            <form action="updateSocial.php" method="POST">
+                                <a href="updateSocial.php?id=<?=$row['id']?>"><button name="update" value="edit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 rounded">Update</button></a>
+                            </form>
+                            <form action="deleteSocial.php" method="POST">
+                                <button name="id" value="<?php echo $row['id']; ?>" type="submit" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this entry?')">Delete</button>
+                            </form>
                         </td>
                     </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

@@ -7,11 +7,13 @@
 
     try {
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PWD);
-        if($pdo){
-            echo "Connected to database";
-        } else {
-            echo "Not connected with database";
-        }
+
+        // to check if the database is already connected
+        // if($pdo){
+        //     echo "Connected to database";
+        // } else {
+        //     echo "Not connected with database";
+        // }
     } catch (PDOException $e) {
         echo 'Connection failed: ' . $e->getMessage();
     }
