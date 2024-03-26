@@ -92,8 +92,8 @@ class backend
             $stmt = $this->dbCnx->prepare("SELECT * FROM social WHERE id = ?");
             $stmt->execute([$id]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
-            if($stmt) {
-                echo $id;
+            if($stmt > 0) {
+                echo "ID found";
             } else {
                 echo "ID not found";
             }
