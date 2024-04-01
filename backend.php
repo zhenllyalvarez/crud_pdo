@@ -105,9 +105,9 @@ class backend
     public function updateSocial() {
         try {
             $stmt = $this->dbCnx->prepare("UPDATE social SET socialmedia = ?, email = ?, password = ? WHERE id = ?");
-            $stmt->execute([$this->socialmedia, $this->email, $this->password, $this->id]);
-            if($stmt->rowCount() > 0) {
-                return "Social account updated successfully.";
+            $success = $stmt->execute([$this->socialmedia, $this->email, $this->password, $this->id]);
+    
+            if ($success) {
                 header("Location: alldata.php");
                 exit();
             } else {
@@ -117,6 +117,7 @@ class backend
             return 'Failed to update data: ' . $e->getMessage();
         }
     }
+    
 
     public function deleteSocial($id) {
         try {
