@@ -106,15 +106,16 @@ class backend
         try {
             $stmt = $this->dbCnx->prepare("UPDATE social SET socialmedia = ?, email = ?, password = ? WHERE id = ?");
             $stmt->execute([$this->socialmedia, $this->email, $this->password, $this->id]);
-            return $stmt->fetchAll();
-            if($stmt) {
-                echo "Not Found tangina";
+            if($stmt->rowCount() > 0) {
+                return "Social account updated successfully.";
+                header("Location: alldata.php");
+                exit();
             } else {
-                echo "ID not found";
+                return "Failed to update social account.";
             }
         } catch (PDOException $e) {
             return 'Failed to update data: ' . $e->getMessage();
-        }        
+        }
     }
 
     public function deleteSocial($id) {

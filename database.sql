@@ -1,6 +1,6 @@
-CREATE DATABASE socialsnap
+CREATE DATABASE socialmedi
 
-CREATE TABLE socials(
+CREATE TABLE social(
     id INT PRIMARY KEY AUTO_INCREMENT,
     socialmedia VARCHAR(60) NOT NULL,
     email VARCHAR(60),
