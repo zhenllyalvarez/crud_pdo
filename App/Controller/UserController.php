@@ -1,7 +1,7 @@
 <?php
- require_once("database.php");
+ include("../Database/database.php");
 
-class backend
+class UserController
 {
     private $id;
     private $socialmedia;
@@ -67,7 +67,7 @@ class backend
             $stmt = $this->dbCnx->prepare("INSERT INTO social (socialmedia, email, password) VALUES (?, ?, ?)");
             $stmt->execute([$this->socialmedia, $this->email, $this->password]);
             if($stmt->rowCount() > 0) {
-                header("Location: alldata.php");
+                header("Location: Dashboard.php");
                 exit();
             } else {
                 echo "data not save";
@@ -108,7 +108,7 @@ class backend
             $success = $stmt->execute([$this->socialmedia, $this->email, $this->password, $this->id]);
     
             if ($success) {
-                header("Location: alldata.php");
+                header("Location: Dashboard.php");
                 exit();
             } else {
                 return "Failed to update social account.";
@@ -124,7 +124,7 @@ class backend
             $stmt = $this->dbCnx->prepare("DELETE FROM social WHERE id = ?");
             $stmt->execute([$id]);
             if($stmt->rowCount() > 0) {
-                header("Location: alldata.php");
+                header("Location: Dashboard.php");
                 exit();
             } else {
                 echo "Failed to delete social";

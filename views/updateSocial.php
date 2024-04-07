@@ -1,28 +1,5 @@
 <?php
-require_once("backend.php");
-
-$data = new backend(null, null, null, null);
-$id = $_POST['id'] ?? null;
-$data->setID($id);
-
-if(isset($_POST['save'])) {
-    $data->setSocialMedia($_POST['socialmedia']);
-    $data->setEmail($_POST['email']);
-    $data->setPassword($_POST['password']);
-
-    echo $data->updateSocial();
-}
-
-
-$result = $data->fetchOne($id);
-$fetchData = $result;
-
-// var_dump($result);
-
-// var_dump($id);
-// var_dump($socialMedia);
-// var_dump($email);
-// var_dump($password);
+    include("../App/Controller/User/Update.php");
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +17,7 @@ $fetchData = $result;
         <div class="w-3/4 sm:w-1/2 relative overflow-x-auto shadow-md sm:rounded-lg">
                 <form class="p-12" action="updateSocial.php" method="POST">
                     <h1 class="text-center text-7xl font-semibold uppercase mb-8">Update social</h1>
-                    <a class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-8 mb-5 rounded mx-auto flex w-24" href="alldata.php">Back</a>
+                    <a class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-8 mb-5 rounded mx-auto flex w-24" href="../views/Dashboard.php">Back</a>
                     <div class="mb-6">
                         <label for="socialMedia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Social Media</label>
                         <input type="text" id="socialmedia" name="socialmedia" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "  value="<?php echo $fetchData['socialmedia']; ?>"/>
