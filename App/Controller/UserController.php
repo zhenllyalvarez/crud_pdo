@@ -6,32 +6,12 @@ class UserController
 
     public function insertData($social, $email, $password)
     {
-<<<<<<< HEAD
-        $this->id = $id;
-        $this->socialmedia = $socialmedia;
-        $this->email = $email;
-        $this->password = $password;
-
-        $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8';
-
-        try {
-            $this->dbCnx = new PDO($dsn, DB_USER, DB_PWD, [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            ]);
-        } catch (PDOException $e) {
-            return 'Connection failed: ' . $e->getMessage();
-        }
-    }
-    
-=======
         try {
             $config = new config();
             if ($config->getStatus()) {
                 $model = new usermodel();
                 $statement = $config->getConnection()->prepare($model->insertuser());
                 $statement->execute(array($social, $email, $password));
->>>>>>> 560346e4c082f964a2e568c9a402c2cda9d85559
 
                 if ($statement->rowCount() > 0) {
                     return 200;
