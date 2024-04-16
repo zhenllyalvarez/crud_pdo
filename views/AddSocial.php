@@ -14,7 +14,7 @@
 <body>
     <div class="min-h-screen flex items-center justify-center flex-col">
         <div class="w-3/4 sm:w-1/2 relative overflow-x-auto shadow-md sm:rounded-lg">
-            <form class="p-12" action="../App/Controller/User/createSocial.php" method="POST">
+            <form class="p-12" action="../route//user/social.php" method="POST">
                 <h1 class="text-center text-7xl font-semibold uppercase mb-8">Add social</h1>
                 <a class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-8 mb-5 rounded mx-auto flex w-24" href="Dashboard.php">Back</a>
                 <div class="mb-6">

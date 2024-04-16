@@ -1,5 +1,5 @@
 <?php
-   include("../App/Model/fetchAllData.php");
+   require($_SERVER['DOCUMENT_ROOT'] . "/crud_pdo/route/user/social.php");
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($allData as $row): ?>
+                <?php foreach ($allsocialdata as $row): ?>
                     <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                         <td class="px-6 py-4">
                         <?php echo $row['id']; ?>
