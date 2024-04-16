@@ -15,7 +15,7 @@ class UserController
         $this->socialmedia = $socialmedia;
         $this->email = $email;
         $this->password = $password;
-    // Set up the PDO connection
+
         $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8';
 
         try {
@@ -25,7 +25,6 @@ class UserController
             ]);
         } catch (PDOException $e) {
             return 'Connection failed: ' . $e->getMessage();
-            // Handle the error appropriately (logging, graceful exit, etc.)
         }
     }
     
