@@ -16,8 +16,8 @@
     <h1 class="font-semibold text-7xl text-center uppercase mb-8">all social</h1>
     <a href="AddSocial.php" class="bg-indigo-400 hover:bg-indigo-500 text-white py-3 px-5 mb-8 rounded">add social</a>
         <div class="w-3/4 sm:w-1/2 relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             #
