@@ -3,6 +3,61 @@ include($_SERVER['DOCUMENT_ROOT'] . "/crud_pdo/App/database/config.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/crud_pdo/App/model/usermodel.php");
 class UserController
 {
+    public function login($email, $password) {
+        try {
+            $config = new config();
+            if($config->getStatus()) {
+                $model = new usermodel();
+                $statement = $config->getConnection()->prepare($model->loginUser());
+                $statement->execute(array($email, md5($password)));
+
+                // var_dump($statement);
+
+                if($statement->rowCount() > 0) {
+                    return 200;
+                } else {
+                    return 401;
+                }
+            } else {
+                return 100;
+            }
+        } catch (PDOException $err) {
+            return 'Failed to login' . $err->getMessage();
+        }
+    }
+
+    public function insertUser($fullname, $email, $password) {
+        try {
+            $config = new config();
+            if($config->getStatus()) {
+                $model = new usermodel();
+                $statement = $config->getConnection()->prepare($model->insertUserAccounts());
+                $statement->execute(array($fullname, $email, md5($password)));
+                
+                if($statement->rowCount() > 0) {
+                    return 200;
+                } else {
+                    return 400;
+                }
+            } else {
+                return 100;
+            }
+        } catch (PDOException $err) {
+            return 'Failed to register user' . $err->getMessage();
+        }
+    }
+
+    // public function checkPassword($password, $conPassword) {
+    //     try {
+    //         if($password === $conPassword) {
+    //             echo "success";
+    //         } else {
+    //             echo "Password not match";
+    //         }
+    //     } catch (PDOException $err) {
+    //         return 'Password undefine ' . $err->getMessage();
+    //     }
+    // }
 
     public function insertData($social, $email, $password)
     {
@@ -23,6 +78,72 @@ class UserController
             }
         } catch (PDOException $e) {
             return 'Failed to insert data: ' . $e->getMessage();
+        }
+    }
+
+    public function updateData($social, $email, $password, $id)
+    {
+        try{
+            $config = new config();
+            if($config->getStatus()) {
+                $model = new usermodel();
+                $statement = $config->getConnection()->prepare($model->updateUser());
+                $statement->execute(array($social, $email, $password, $id));
+
+                if($statement->rowCount() > 0) {
+                    return 200;
+                } else {
+                    return 400;
+                }
+            } else {
+                return 100;
+            }
+        } catch (PDOException $e) {
+            return 'Failed to update data ' . $e->getMessage();
+        }
+    }
+
+    public function deleteData($id)
+    {
+        try {
+            $config = new config();
+            if($config->getStatus()) {
+                $model = new usermodel();
+                $statement = $config->getConnection()->prepare($model->deleteUser());
+                // $statement->bindParam(1, $id, PDO::PARAM_INT);
+                $statement->execute(array($id));
+                
+                if($statement->rowCount() > 0) {
+                    return 200;
+                } else {
+                    return 400;
+                }
+            } else {
+                return 100;
+            }
+        } catch (PDOException $e) {
+            return 'Failed to delete data ' . $e->getMessage();
+        }
+    }
+
+    public function getOneUser() {
+        try {
+            $config = new config();
+            if($config->getStatus()) {
+                $model = new usermodel();
+                $statement = $config->getConnection()->prepare($model->selectOneUser());
+                $statement->execute();
+
+                if($statement->rowCount() > 0) {
+                    return 200;
+                } else {
+                    return 401;
+                }
+            } else {
+                return 100;
+            }
+        } catch (PDOException $err) {
+            return 'Failed to fetch user' . $err->getMessage();
         }
     }
 
